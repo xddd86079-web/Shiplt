@@ -1,5 +1,5 @@
 import java.util.*;
-
+//не получается корректно загрузить данные через github, опять съедается код весь(
 public class DeliveryApp {
 
     private static final Scanner scanner = new Scanner(System.in);
