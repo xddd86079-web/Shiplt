@@ -9,7 +9,7 @@ public class ParcelBox<T extends Parcel> {
         this.maxWeight = maxWeight;
     }
 
-    public void addParcel(T parcel) {
+    public boolean addParcel(T parcel) {
         int totalWeight = 0;
 
         for (T p : parcels) {
@@ -18,10 +18,11 @@ public class ParcelBox<T extends Parcel> {
 
         if (totalWeight + parcel.getWeight() > maxWeight) {
             System.out.println("Превышен максимальный вес коробки!");
-            return;
+            return false;
         }
 
         parcels.add(parcel);
+        return true;
     }
 
     public ArrayList<T> getAllParcels() {

@@ -1,5 +1,4 @@
 import java.util.*;
-//не получается корректно загрузить данные через github, опять съедается код весь(
 public class DeliveryApp {
 
     private static final Scanner scanner = new Scanner(System.in);
@@ -72,21 +71,24 @@ public class DeliveryApp {
         switch (type) {
             case 1:
                 StandardParcel standardParcel = new StandardParcel(description, weight, deliveryAddress, sendDay);
-                allParcels.add(standardParcel);
-                standardBox.addParcel(standardParcel);
+                if (standardBox.addParcel(standardParcel)) {
+                    allParcels.add(standardParcel);
+                }
                 break;
             case 2:
                 FragileParcel fragileParcel = new FragileParcel(description, weight, deliveryAddress, sendDay);
-                allParcels.add(fragileParcel);
-                fragileBox.addParcel(fragileParcel);
-                trackableParcels.add(fragileParcel);
+                if (fragileBox.addParcel(fragileParcel)) {
+                    allParcels.add(fragileParcel);
+                    trackableParcels.add(fragileParcel);
+                }
                 break;
             case 3:
                 System.out.println("Введите срок хранения (дней):");
                 int timeToLive = Integer.parseInt(scanner.nextLine());
                 PerishableParcel perishableParcel = new PerishableParcel(description, weight, deliveryAddress, sendDay, timeToLive);
-                allParcels.add(perishableParcel);
-                perishableBox.addParcel(perishableParcel);
+                if (perishableBox.addParcel(perishableParcel)) {
+                    allParcels.add(perishableParcel);
+                }
                 break;
             default:
                 System.out.println("Неверный тип посылки!");
